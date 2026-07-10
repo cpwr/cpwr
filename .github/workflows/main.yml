@@ -13,7 +13,12 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v6
+      # FIX: Downgraded from v6 to v4 to use a valid, existing action version
+      - uses: actions/checkout@v4
+
+      # FIX: Ensures the target directory exists so the actions don't throw an error
+      - name: Ensure target directory exists
+        run: mkdir -p profile
 
       - name: Generate stats card
         uses: stats-organization/github-readme-stats-action@v2
